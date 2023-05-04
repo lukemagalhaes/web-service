@@ -16,7 +16,7 @@ import ps2.mack.springbootapi.time.TimeRequestDTO;
 import ps2.mack.springbootapi.time.TimeResponseDTO;
 
 @RestController
-@RequestMapping("time")
+@RequestMapping("times")
 public class TimeController {
     
     @Autowired
