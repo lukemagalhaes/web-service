@@ -1,5 +1,19 @@
 package ps2.mack.springbootapi.time;
 
-public record TimeRequestDTO(String nome, Integer ano, String cidade, String estado) {
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+
+public record TimeRequestDTO(
+    @NotEmpty
+    String nome, 
+    
+    @Min(0)
+    Integer ano, 
+
+    @NotEmpty
+    String cidade, 
+    
+    @NotEmpty
+    String estado) {
 
 }
