@@ -1,16 +1,9 @@
 package ps2.mack.springbootapi.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import ps2.mack.springbootapi.contaBancaria.ContaBancaria;
 import ps2.mack.springbootapi.contaBancaria.ContaBancariaRepository;
@@ -33,9 +26,16 @@ public class ContaBancariaController {
 
     @GetMapping
     public List<ContaBancariaResponseDTO> getAll() {
-        List<ContaBancariaResponseDTO> conta = repository.findAll().stream()
+        List<ContaBancariaResponseDTO> contaList = repository.findAll().stream()
                 .map(ContaBancariaResponseDTO::new).toList();
-        return conta;
+        return contaList;
+    }
+
+    @PutMapping
+    public ContaBancaria updateContaBancaria(@RequestBody ContaBancaria data){
+        if(data.getId()>0)
+            return repository.save(data);
+        return null;
     }
 
     @DeleteMapping("/{id}")
@@ -47,6 +47,14 @@ public class ContaBancariaController {
     public ContaBancariaResponseDTO getContaBancariaById(@PathVariable Long id) {
         ContaBancaria conta = repository.findById(id).orElseThrow();
         return new ContaBancariaResponseDTO(conta);
+    }
+
+    @GetMapping("/buscar")
+    public List<ContaBancariaResponseDTO> buscarPorNome(@RequestParam String conta) {
+        return repository.findByNomeTitularContainingIgnoreCase(conta)
+            .stream()
+            .map(ContaBancariaResponseDTO::new)
+            .collect(Collectors.toList());
     }
 
 }
