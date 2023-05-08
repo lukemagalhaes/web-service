@@ -1,17 +1,10 @@
 package ps2.mack.springbootapi.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import ps2.mack.springbootapi.time.Time;
 import ps2.mack.springbootapi.time.TimeRepository;
 import ps2.mack.springbootapi.time.TimeRequestDTO;
@@ -32,6 +25,13 @@ public class TimeController {
         return;
     }
 
+    @PutMapping
+    public Time updateTime(@RequestBody Time data){
+        if(data.getId()>0)
+            return repository.save(data);
+        return null;
+    }
+
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping
     public List<TimeResponseDTO> getAll(){
@@ -50,4 +50,13 @@ public class TimeController {
         Time time = repository.findById(id).orElseThrow();
         return new TimeResponseDTO(time);
     }
+    
+    @GetMapping("/buscar")
+    public List<TimeResponseDTO> buscarPorNome(@RequestParam String time) {
+        return repository.findByNomeContainingIgnoreCase(time)
+            .stream()
+            .map(TimeResponseDTO::new)
+            .collect(Collectors.toList());
+    }
+    // http://localhost:8080/times/buscar?time=pedro
 }
