@@ -93,5 +93,4 @@ public class ProdutoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    // http://localhost:8080/produtos/buscar?produto=...
 }

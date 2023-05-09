@@ -1,7 +1,9 @@
-package ps2.mack.springbootapi.usuario;
+package ps2.mack.springbootapi.data;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import ps2.mack.springbootapi.usuario.Usuario;
 
 import java.util.ArrayList;
 import java.util.Collection;

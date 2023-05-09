@@ -53,5 +53,4 @@ public class UsuarioController {
         return ResponseEntity.status(status).body(valid);
 
     }
-
 }

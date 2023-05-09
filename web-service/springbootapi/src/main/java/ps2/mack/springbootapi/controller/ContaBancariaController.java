@@ -92,5 +92,4 @@ public class ContaBancariaController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    // http://localhost:8080/contas/buscar?conta=...
 }
