@@ -11,7 +11,7 @@ import ps2.mack.springbootapi.contaBancaria.ContaBancariaRequestDTO;
 import ps2.mack.springbootapi.contaBancaria.ContaBancariaResponseDTO;
 
 @RestController
-@RequestMapping("/contas")
+@RequestMapping("/api/contas")
 public class ContaBancariaController {
     @Autowired
     private ContaBancariaRepository repository;

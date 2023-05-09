@@ -13,7 +13,7 @@ import ps2.mack.springbootapi.produto.ProdutoRequestDTO;
 import ps2.mack.springbootapi.produto.ProdutoResponseDTO;
 
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping("/api/produtos")
 public class ProdutoController {
     @Autowired
     private ProdutoRepository repository;
