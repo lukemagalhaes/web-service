@@ -24,20 +24,14 @@ public class SwaggerConfig {
         Server devServer = new Server();
         devServer.setUrl(devUrl);
         devServer.setDescription("Server URL in Development environment");
-
         Server prodServer = new Server();
         prodServer.setUrl(prodUrl);
         prodServer.setDescription("Server URL in Production environment");
-
-        Contact contact = new Contact();
-        contact.setEmail("bezkoder@gmail.com");
-        contact.setName("BezKoder");
-        contact.setUrl("https://www.bezkoder.com");
-
         Info info = new Info()
                 .title("Documentação da API do Projeto")
                 .version("1.0")
-                .description("This API exposes endpoints to manage tutorials.");
+                .description(
+                        "Documentação da API do projeto de web service desenvolvido pelos alunos Guilherme Bondezan Yonamine, Luis Augusto Marques e Luke Magalhães da turma 03H do curso de Sistemas de Informação.");
         return new OpenAPI().info(info).servers(List.of(devServer, prodServer));
     }
 }
